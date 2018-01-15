@@ -21,7 +21,11 @@ switch (command) {
       break;
   
     case "spotify-this-song":
+    if (!value) {
+      console.log("------------------------------\nSong: The Sign \nArtist: Ace of Base \nAlbum: Greatest Hits \nPreview URL: https://p.scdn.co/mp3-preview/5ca0168d6b58e0f993b2b741af90ecc7c9b16893?cid=71c9a267d8e94da184aa5c4252d73429")
+    } else {
       song();
+    }
       break;
   
     case "movie-this":
@@ -47,8 +51,10 @@ switch (command) {
   }
 
   function song() {
-    spotifyy.search({ type: 'track', query: value }, function(error, response) {
-      if(error) throw error;
+    spotifyy.search({ type: 'track', query: value || "The Sign Ace of Base", limit: 10 }, function(error, response) {
+      if (error) {
+        return console.log('Error occurred: ' + error);
+      }
       for (var i = 0; i < response.tracks.items.length; i++) {
       console.log("--------------------" + "\n");
       console.log("Song: " + response.tracks.items[i].name);
