@@ -64,7 +64,14 @@ switch (command) {
       
   }
 
-  function song() {
+  var test = function song() {
+
+    fs.appendFile("log.txt", + test, function(err) {
+      if (err) {
+        return console.log(err);
+      }
+    });
+
     spotifyy.search({ type: 'track', query: value || "The Sign Ace of Base", limit: 10 }, function(error, response) {
       if (error) {
         return console.log('Error occurred: ' + error);
