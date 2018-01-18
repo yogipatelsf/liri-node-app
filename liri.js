@@ -52,6 +52,13 @@ switch (command) {
   }
 
   function tweets() {
+
+      fs.appendFile("log.txt", "tweet: " + value, function(err) {
+          if (err) {
+              return console.log(err);
+          }
+      });
+
     client.get('statuses/user_timeline', { count: '20'}, function(error, tweets, response) {
         if(error) throw error;
         console.log("Here are your most recent Tweets:" + "\n")
@@ -64,9 +71,9 @@ switch (command) {
       
   }
 
-  var test = function song() {
+  function song() {
 
-    fs.appendFile("log.txt", + test, function(err) {
+    fs.appendFile("log.txt", "song: " + value, function(err) {
       if (err) {
         return console.log(err);
       }
@@ -88,6 +95,13 @@ switch (command) {
     
 
     function movie(){
+
+        fs.appendFile("log.txt", "movie: " + value, function(err) {
+            if (err) {
+                return console.log(err);
+            }
+        });
+
       request("http://www.omdbapi.com/?t=" + value + "&y=&plot=short&apikey=trilogy", function(error, response, body){
         //request successful with status 200
         if(!error && response.statusCode === 200){
@@ -113,6 +127,13 @@ switch (command) {
     }
      
       function dothis(){
+
+          fs.appendFile("log.txt", "whatever: " + value, function(err) {
+              if (err) {
+                  return console.log(err);
+              }
+          });
+
         fs.readFile("random.txt", "utf8", function(error, data){
           //log error to console
           if (error){
